@@ -14,9 +14,8 @@
 // limitations under the License.
 //
 
-
 cc_library {
-    name: "libgptutils",
+    name: "libgptutils.sm6150",
     vendor: true,
     recovery_available: true,
     shared_libs: [
