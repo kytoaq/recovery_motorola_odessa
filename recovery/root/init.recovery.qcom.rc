@@ -31,8 +31,8 @@ on property:ro.crypto.type=file
     setprop ro.crypto.state encrypted
     setprop twrp.apex.loaded true
 
-on init
-    setprop sys.usb.configfs 1
+on boot
+    setprop sys.usb.config mtp,adb
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
