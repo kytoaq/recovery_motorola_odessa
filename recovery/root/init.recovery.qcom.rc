@@ -25,12 +25,14 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+# Crypto - Decryption
 import /init.recovery.qcom_decrypt.rc
 
 on property:ro.crypto.type=file
     setprop ro.crypto.state encrypted
     setprop twrp.apex.loaded true
 
+# Android Debug Bridge
 on boot
     setprop sys.usb.config mtp,adb
 
@@ -39,3 +41,14 @@ on fs
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
     
     export LD_LIBRARY_PATH /system/bin:/sbin:/vendor/lib64:/vendor/lib64/hw
+
+# Touchscreen firmware
+on boot
+    start load_modules
+
+service load_modules /system/bin/load_modules.sh
+    oneshot
+    disabled
+    user root
+    group root
+    seclabel u:r:recovery:s0
