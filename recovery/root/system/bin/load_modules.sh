@@ -48,13 +48,14 @@ insmod $module_path/utags.ko
 
 cd $firmware_path
 touch_product_string=$(ls $touch_class_path)
-firmware_file="focaltech-txd-ft8765-06-0000-odessa.bin"
+insmod $module_path/focaltech_0flash_mmi.ko
+firmware_file="focaltech-txd-ft8756-06-0000-odessa.bin"
 
-touch_path=/sys$(cat $touch_class_path/$touch_product_string/path | awk '{print $1}')
+touch_path=/sys$(cat $touch_class_path/$touch_product_string/path | awk -Fodessa '{print $1}')
 wait_for_poweron
 echo $firmware_file > $touch_path/doreflash
 echo 1 > $touch_path/forcereflash
-sleep 5
+sleep 3
 echo 1 > $touch_path/reset
 
 return 0
