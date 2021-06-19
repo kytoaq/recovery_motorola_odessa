@@ -247,6 +247,7 @@ TW_DEFAULT_BRIGHTNESS := 150
 TW_THEME := portrait_mdpi
 
 # Team Win Recovery - System Props
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental"
 
